@@ -82,14 +82,10 @@ public class Sweep {
     public static void test10() {
         List<Integer> list1 = Arrays.asList(16, 4, 12, 21, 20, 15, 23, 64, 23);
         Integer t1 = Sweep.sweepValue(list1, t -> true, (a, b) ->
-        {
-            return b == null ? a : a < b ? a : b;
-        });
+                b == null ? a : a < b ? a : b);
         System.out.println(t1);
 
-        Integer t2 = Sweep.sweepValue(list1, t -> true, (a, b) -> {
-            return b == null ? a : b + a;
-        });
+        Integer t2 = Sweep.sweepValue(list1, t -> true, (a, b) -> b == null ? a : b + a);
         System.out.println(t2);
     }
 
@@ -125,14 +121,10 @@ public class Sweep {
         List<Integer> list1 = Sweep.sweepList(list, t -> t > 30 && t < 50, t -> t);
         System.out.println(list1);
         //print the lists mean value
-        Integer t1 = Sweep.sweepValue(list, t -> true, (a, b) -> {
-            return b == null ? a : b + a;
-        });
+        Integer t1 = Sweep.sweepValue(list, t -> true, (a, b) -> b == null ? a : b + a);
         System.out.println(t1 / list.size());
         //print the theoretical standard deviation
-        Integer t2 = Sweep.SweepProgram(list, t -> true, (a, b) -> {
-            return b == null ? a : b + a;
-        }, 0);
+        Integer t2 = Sweep.SweepProgram(list, t -> true, (a, b) -> b == null ? a : b + a, 0);
 
     }
 
@@ -156,11 +148,6 @@ class Functions {
             }
         }
         return true;
-    }
-
-    public static <T> boolean isEven(T t) {
-        int n = (int) t;
-        return n % 2 == 0;
     }
 
     public static int crossSum(Long n) {
